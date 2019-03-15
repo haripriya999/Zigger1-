@@ -1,4 +1,4 @@
-import React, {Component} from 'react';
+import React from 'react';
 import { Alert, Platform, StyleSheet, Text, View, TextInput, Image, Button } from 'react-native';
 import firebase from 'firebase';
 import ErrorMessage from '../utils/ErrorMessage';

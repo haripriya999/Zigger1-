@@ -1,4 +1,4 @@
-import React, {Component} from 'react';
+import React from 'react';
 import { Alert, Platform, StyleSheet, Text, View, Image, Button } from 'react-native';
 
 export default class HomeScreen extends React.Component {

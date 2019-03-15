@@ -1,5 +1,5 @@
-import React, {Component} from 'react';
-import { Alert, Platform, StyleSheet, Text, View, TextInput, Image, Button } from 'react-native';
+import React from 'react';
+import { Text } from 'react-native';
 
 export default class ErrorMessage extends React.Component {
 

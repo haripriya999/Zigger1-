@@ -1,17 +1,6 @@
-import React, {Component} from 'react';
+import React from 'react';
 import {Alert, Platform, StyleSheet, Text, View, Image} from 'react-native';
-
-class Bananas extends Component {
-  render() {
-    let pic = {
-      uri: 'https://images-na.ssl-images-amazon.com/images/I/71gI-IUNUkL._SY355_.jpg'
-    };
-
-    return (
-      <Image source={pic} style={{width: 193, height: 110}} />
-    );
-  }
-}
+import Bananas from './utils/Bananas';
 
 export default class HomeScreen extends React.Component {
   render() {
