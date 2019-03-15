@@ -1,17 +1,5 @@
-/**
- * Sample React Native App
- * https://github.com/facebook/react-native
- *
- * @format
- * @flow
- * @lint-ignore-every XPLATJSCOPYRIGHT1
- */
-
 import React, {Component} from 'react';
 import {Alert, Platform, StyleSheet, Text, View, Image} from 'react-native';
-import { Button, ThemeProvider } from 'react-native-elements';
-import { Input } from 'react-native-elements';
-import Icon from 'react-native-vector-icons/FontAwesome';
 
 class Bananas extends Component {
   render() {
@@ -30,7 +18,7 @@ export default class HomeScreen extends React.Component {
     const {navigate} = this.props.navigation;
     return (
       <View style={styles.container}>
-      
+
         <Bananas></Bananas>
         
       </View>
