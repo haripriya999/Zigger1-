@@ -8,10 +8,12 @@
  */
 
 import {createStackNavigator, createAppContainer} from 'react-navigation';
-import HomeScreen from './views/HomeScreen';
-import MainScreen from './views/MainScreen';
 import LoginScreen from './views/auth/LoginScreen';
 import SignupScreen from './views/auth/SignupScreen';
+import HomeScreen from './views/HomeScreen';
+import MainScreen from './views/MainScreen';
+import DistributorScreen from './views/DistributorScreen';
+import DonateScreen from './views/DonateScreen';
 
 const MainNavigator = createStackNavigator({
     Home: {
@@ -23,6 +25,8 @@ const MainNavigator = createStackNavigator({
     Login: {screen: LoginScreen},
     Signup: {screen: SignupScreen},
     Main: {screen: MainScreen},
+    Distributors: {screen: DistributorScreen},
+    Donate: {screen: DonateScreen},
 });
 
 const App = createAppContainer(MainNavigator);

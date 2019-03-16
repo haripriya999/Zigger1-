@@ -9,7 +9,12 @@ export default class SignupScreen extends React.Component {
     super(props);
     this._onSignup = this._onSignup.bind(this);
     this.state = {email: "", username: "", password: "", errorMessage: ""};
-  }
+    /*
+    firebase.database().ref('distributors').push({ email: 'distro2@gmail.com', username: 'distro2', latitude: 10.3850, longitude: 58.4867, foodUnits: 30 })
+    .then(() => {})
+    .catch(error => this.setState({ errorMessage: error.message }));
+    */
+}
 
   handleSignUp = () => {
     firebase
