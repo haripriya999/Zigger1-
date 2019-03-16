@@ -8,15 +8,20 @@ export default class SignupScreen extends React.Component {
   constructor(props) {
     super(props);
     this._onSignup = this._onSignup.bind(this);
-    this.state = {email: "", password: "", errorMessage: ""};
+    this.state = {email: "", username: "", password: "", errorMessage: ""};
   }
 
   handleSignUp = () => {
     firebase
       .auth()
       .createUserWithEmailAndPassword(this.state.email, this.state.password)
-      .then(() => this.props.navigation.navigate('Login'))
-      .catch(error => this.setState({ errorMessage: error.message }))
+      .then(() => { 
+        firebase.database().ref('users').push({ email: this.state.email, username: this.state.username })
+        .then(() => {})
+        .catch(error => this.setState({ errorMessage: error.message }));
+        this.props.navigation.navigate('Login');
+      })
+      .catch(error => this.setState({ errorMessage: error.message }));
   }
 
   _onSignup() {
@@ -33,6 +38,13 @@ export default class SignupScreen extends React.Component {
           <TextInput
             placeholder='Email'
             onChangeText={(email) => this.setState({email})}
+          />
+        </View>
+
+        <View style={styles.inputContainer}>
+          <TextInput
+            placeholder='Username'
+            onChangeText={(username) => this.setState({username})}
           />
         </View>
 
