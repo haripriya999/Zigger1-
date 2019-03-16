@@ -4,10 +4,11 @@ import Bananas from './utils/Bananas';
 
 export default class HomeScreen extends React.Component {
   render() {
-    const {navigate} = this.props.navigation;
+    const user = JSON.parse(JSON.stringify(this.props.navigation.getParam('user')));
     return (
       <View style={styles.container}>
 
+        <Text>{user[Object.keys(user)[0]].username}</Text>
         <Bananas></Bananas>
         
       </View>
