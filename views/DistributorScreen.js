@@ -2,6 +2,7 @@ import React from 'react';
 import {Alert, Platform, StyleSheet, Text, View, ScrollView, Image, FlatList } from 'react-native';
 import Bananas from './utils/Bananas';
 import ErrorMessage from './utils/ErrorMessage';
+import DistributorListItem from './utils/DistributorListItem';
 import firebase from 'firebase';
 
 export default class DistributorScreen extends React.Component {
@@ -13,7 +14,7 @@ export default class DistributorScreen extends React.Component {
         firebase.database().ref('distributors').once('value')
         .then(distributors => {
             distributors = JSON.parse(JSON.stringify(distributors));
-            Object.keys(distributors).map((id) => this.distributors.push({ latitude: distributors[id].latitude
+            Object.keys(distributors).map((id) => this.distributors.push({ username: distributors[id].username, latitude: distributors[id].latitude
                 , longitude: distributors[id].longitude, foodUnits: distributors[id].foodUnits}));
             this.setState({ distributors: this.distributors });
         })
@@ -29,7 +30,8 @@ export default class DistributorScreen extends React.Component {
 
         <FlatList
             data={this.state.distributors}
-            renderItem={({item}) => <Text>{item.latitude} {item.longitude} {item.foodUnits}</Text>}
+            renderItem={({item}) => <DistributorListItem username={item.username} latitude={item.latitude} longitude={item.longitude}
+             foodUnits={item.foodUnits}></DistributorListItem>}
         />
 
         <Bananas></Bananas>
