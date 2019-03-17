@@ -8,9 +8,10 @@ export default class SignupScreen extends React.Component {
   constructor(props) {
     super(props);
     this._onSignup = this._onSignup.bind(this);
-    this.state = {email: "", username: "", password: "", errorMessage: "", disabled: false};
+    this.state = {email: "", username: "", password: "", phoneno: "", errorMessage: "", disabled: false};
     /*
-    firebase.database().ref('distributors').push({ email: 'distro2@gmail.com', username: 'distro2', latitude: 10.3850, longitude: 58.4867, foodUnits: 30 })
+    firebase.database().ref('distributors').push({ email: 'distro2@gmail.com', username: 'distro2',
+     latitude: 30.3850, longitude: 98.4867, phoneno: 987654321, foodUnits: 40, claimants: ['sandeep', 'sharat'], })
     .then(() => {})
     .catch(error => this.setState({ errorMessage: error.message }));
     */
@@ -22,7 +23,7 @@ export default class SignupScreen extends React.Component {
       .auth()
       .createUserWithEmailAndPassword(this.state.email, this.state.password)
       .then(() => { 
-        firebase.database().ref('users').push({ email: this.state.email, username: this.state.username })
+        firebase.database().ref('users').push({ email: this.state.email, username: this.state.username, phoneno: this.state.phoneno })
         .then(() => this.props.navigation.navigate('Login'))
         .catch(error => this.setState({ errorMessage: error.message, disabled: false }));
       })
@@ -50,6 +51,13 @@ export default class SignupScreen extends React.Component {
           <TextInput
             placeholder='Username'
             onChangeText={(username) => this.setState({username})}
+          />
+        </View>
+
+        <View style={styles.inputContainer}>
+          <TextInput
+            placeholder='Phone Number'
+            onChangeText={(phoneno) => this.setState({phoneno})}
           />
         </View>
 

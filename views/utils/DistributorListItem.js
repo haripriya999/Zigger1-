@@ -6,8 +6,10 @@ import ErrorMessage from '../utils/ErrorMessage';
 export default class DistributorListItem extends React.Component {
 
   constructor(props) {
-      super(props);
-      this.state = {errorMessage: ''};
+    super(props);
+    this.cuser = this.props.user;
+    this.cuser = this.cuser[Object.keys(this.cuser)[0]];
+    this.state = {errorMessage: ''};
   }
 
   openMap(latitude, longitude) {
@@ -30,7 +32,11 @@ export default class DistributorListItem extends React.Component {
       if(cdistributor.foodUnits >= 2) {
         firebase.database().ref('distributors/'+this.props.uid).update({
           foodUnits: cdistributor.foodUnits-1,
-        }).then(() => ToastAndroid.show('Unit from ' + cdistributor.username + ' claimed!', ToastAndroid.SHORT))
+        }).then(() => {
+          firebase.database().ref('distributors/'+this.props.uid+'/claimants').push({ username: this.cuser.username })
+          .then(() => ToastAndroid.show('Unit from ' + cdistributor.username + ' claimed!', ToastAndroid.SHORT))
+          .catch((error) => this.setState({ errorMessage: error.message }));
+        })
         .catch(error => this.setState({ errorMessage: error.message }));
       } else {
         ToastAndroid.show('No units left!', ToastAndroid.SHORT);

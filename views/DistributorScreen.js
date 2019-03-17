@@ -34,7 +34,7 @@ export default class DistributorScreen extends React.Component {
 
   render() {
     const {navigate} = this.props.navigation;
-    //const cuser = JSON.parse(JSON.stringify(this.props.navigation.getParam('user')));
+    const cuser = JSON.parse(JSON.stringify(this.props.navigation.getParam('user')));
     return (
       <ScrollView style={styles.container}
         refreshControl={
@@ -47,7 +47,7 @@ export default class DistributorScreen extends React.Component {
 
         <FlatList
             data={this.state.distributors}
-            renderItem={({item}) => <DistributorListItem uid={item.uid} username={item.username} latitude={item.latitude} longitude={item.longitude}
+            renderItem={({item}) => <DistributorListItem user={cuser} uid={item.uid} username={item.username} latitude={item.latitude} longitude={item.longitude}
              foodUnits={item.foodUnits}></DistributorListItem>}
         />
 
