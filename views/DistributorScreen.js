@@ -14,10 +14,11 @@ export default class DistributorScreen extends React.Component {
   }
 
   fetchData() {
+    this.distributors = [];
     return (firebase.database().ref('distributors').once('value')
     .then(distributors => {
         distributors = JSON.parse(JSON.stringify(distributors));
-        Object.keys(distributors).map((id) => this.distributors.push({ username: distributors[id].username, latitude: distributors[id].latitude
+        Object.keys(distributors).map((id) => this.distributors.push({ uid: id, username: distributors[id].username, latitude: distributors[id].latitude
             , longitude: distributors[id].longitude, foodUnits: distributors[id].foodUnits}));
         this.setState({ distributors: this.distributors });
     })
@@ -33,7 +34,7 @@ export default class DistributorScreen extends React.Component {
 
   render() {
     const {navigate} = this.props.navigation;
-    const cuser = JSON.parse(JSON.stringify(this.props.navigation.getParam('user')));
+    //const cuser = JSON.parse(JSON.stringify(this.props.navigation.getParam('user')));
     return (
       <ScrollView style={styles.container}
         refreshControl={
@@ -46,7 +47,7 @@ export default class DistributorScreen extends React.Component {
 
         <FlatList
             data={this.state.distributors}
-            renderItem={({item}) => <DistributorListItem username={item.username} latitude={item.latitude} longitude={item.longitude}
+            renderItem={({item}) => <DistributorListItem uid={item.uid} username={item.username} latitude={item.latitude} longitude={item.longitude}
              foodUnits={item.foodUnits}></DistributorListItem>}
         />
 

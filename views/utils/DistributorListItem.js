@@ -1,10 +1,13 @@
 import React from 'react';
-import {Alert, Platform, StyleSheet, Text, View, ScrollView, Image, FlatList, Button, Linking } from 'react-native';
+import {Platform, StyleSheet, Text, View, Button, Linking, ToastAndroid} from 'react-native';
+import firebase from 'firebase';
+import ErrorMessage from '../utils/ErrorMessage';
 
 export default class DistributorListItem extends React.Component {
 
   constructor(props) {
       super(props);
+      this.state = {errorMessage: ''};
   }
 
   openMap(latitude, longitude) {
@@ -19,6 +22,23 @@ export default class DistributorListItem extends React.Component {
       Linking.openURL(url); 
   }
 
+  claimUnit() {
+    firebase.database().ref('distributors').orderByChild('username').equalTo(this.props.username).limitToFirst(1).once('value')
+    .then(cdistributor => {
+      cdistributor = JSON.parse(JSON.stringify(cdistributor));
+      cdistributor = cdistributor[Object.keys(cdistributor)[0]];
+      if(cdistributor.foodUnits >= 2) {
+        firebase.database().ref('distributors/'+this.props.uid).update({
+          foodUnits: cdistributor.foodUnits-1,
+        }).then(() => ToastAndroid.show('Unit claimed!', ToastAndroid.SHORT))
+        .catch(error => this.setState({ errorMessage: error.message }));
+      } else {
+        ToastAndroid.show('No units left!', ToastAndroid.SHORT);
+      }
+    })
+    .catch(error => this.setState({ errorMessage: error.message }));
+  }
+
   render() {
    return (
       <View style={styles.container}>
@@ -27,6 +47,7 @@ export default class DistributorListItem extends React.Component {
           <Text>
             <Text style={{color: '#DC143C', fontSize: 20}}>Units left:</Text> {this.props.foodUnits}
           </Text>
+          <ErrorMessage errorMessage={this.state.errorMessage} />
         </View>
         
         <View style={styles.cardRightContainer}>
@@ -35,7 +56,7 @@ export default class DistributorListItem extends React.Component {
           </View>
 
           <View style={styles.cardBtnContainer}>
-              <Button title="Claim Unit"></Button>
+              <Button title="Claim Unit" onPress={() => this.claimUnit()}></Button>
           </View>
         </View>
       </View>
