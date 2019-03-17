@@ -8,19 +8,20 @@ export default class LoginScreen extends React.Component {
   constructor(props) {
     super(props);
     this._onLogin = this._onLogin.bind(this);
-    this.state = {email: "", password: "", errorMessage: ""};
+    this.state = {email: "", password: "", errorMessage: "", disabled: false};
   }
 
   handleSignIn = () => {
+    this.setState({disabled: true});
     firebase
       .auth()
       .signInWithEmailAndPassword(this.state.email, this.state.password)
       .then(() => {
         firebase.database().ref('users').orderByChild('email').equalTo(this.state.email).limitToFirst(1).once('value')
         .then(cuser => this.props.navigation.navigate('Main', {user: cuser}))
-        .catch(error => this.setState({ errorMessage: error.message }));
+        .catch(error => this.setState({ errorMessage: error.message, disabled: false }));
       })
-      .catch(error => this.setState({ errorMessage: error.message }));
+      .catch(error => this.setState({ errorMessage: error.message, disabled: false }));
   }
 
   _onLogin() {
@@ -51,6 +52,7 @@ export default class LoginScreen extends React.Component {
         <View style={styles.btnContainer}>
           <Button
             title="Login"
+            disabled={this.state.disabled}
             onPress={this._onLogin}
           />
         </View>

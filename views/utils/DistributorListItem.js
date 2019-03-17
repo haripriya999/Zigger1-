@@ -30,7 +30,7 @@ export default class DistributorListItem extends React.Component {
       if(cdistributor.foodUnits >= 2) {
         firebase.database().ref('distributors/'+this.props.uid).update({
           foodUnits: cdistributor.foodUnits-1,
-        }).then(() => ToastAndroid.show('Unit claimed!', ToastAndroid.SHORT))
+        }).then(() => ToastAndroid.show('Unit from ' + cdistributor.username + ' claimed!', ToastAndroid.SHORT))
         .catch(error => this.setState({ errorMessage: error.message }));
       } else {
         ToastAndroid.show('No units left!', ToastAndroid.SHORT);
@@ -72,6 +72,7 @@ const styles = StyleSheet.create({
     margin: 10,
     padding: 10,
     backgroundColor: '#FFFFFF',
+    borderWidth: 1,
     borderBottomWidth: 3,
   },
   btnContainer: {

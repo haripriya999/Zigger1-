@@ -8,7 +8,7 @@ export default class SignupScreen extends React.Component {
   constructor(props) {
     super(props);
     this._onSignup = this._onSignup.bind(this);
-    this.state = {email: "", username: "", password: "", errorMessage: ""};
+    this.state = {email: "", username: "", password: "", errorMessage: "", disabled: false};
     /*
     firebase.database().ref('distributors').push({ email: 'distro2@gmail.com', username: 'distro2', latitude: 10.3850, longitude: 58.4867, foodUnits: 30 })
     .then(() => {})
@@ -17,15 +17,16 @@ export default class SignupScreen extends React.Component {
 }
 
   handleSignUp = () => {
+    this.setState({disabled: true});
     firebase
       .auth()
       .createUserWithEmailAndPassword(this.state.email, this.state.password)
       .then(() => { 
         firebase.database().ref('users').push({ email: this.state.email, username: this.state.username })
         .then(() => this.props.navigation.navigate('Login'))
-        .catch(error => this.setState({ errorMessage: error.message }));
+        .catch(error => this.setState({ errorMessage: error.message, disabled: false }));
       })
-      .catch(error => this.setState({ errorMessage: error.message }));
+      .catch(error => this.setState({ errorMessage: error.message, disabled: false }));
   }
 
   _onSignup() {
@@ -64,6 +65,7 @@ export default class SignupScreen extends React.Component {
         <View style={styles.btnContainer}>
           <Button
             title="Sign Up"
+            disabled={this.state.disabled}
             onPress={this._onSignup}
           />
         </View>
