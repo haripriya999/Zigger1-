@@ -43,21 +43,21 @@ export default class SignupScreen extends React.Component {
         <View style={styles.inputContainer}>
           <TextInput
             placeholder='Email'
-            onChangeText={(email) => this.setState({email})}
+            onChangeText={(emaill) => this.setState({email: emaill})}
           />
         </View>
 
         <View style={styles.inputContainer}>
           <TextInput
             placeholder='Username'
-            onChangeText={(username) => this.setState({username})}
+            onChangeText={(usernamee) => this.setState({username: usernamee})}
           />
         </View>
 
         <View style={styles.inputContainer}>
           <TextInput
             placeholder='Phone Number'
-            onChangeText={(phoneno) => this.setState({phoneno})}
+            onChangeText={(phonenoo) => this.setState({phoneno: phonenoo})}
           />
         </View>
 
@@ -66,7 +66,7 @@ export default class SignupScreen extends React.Component {
             secureTextEntry={true}
             placeholder='Password'
             textContentType='password'
-            onChangeText={(password) => this.setState({password})}
+            onChangeText={(passwordd) => this.setState({password: passwordd})}
           />
         </View>
 
