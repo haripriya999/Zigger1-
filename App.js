@@ -12,6 +12,7 @@ import LoginScreen from './views/auth/LoginScreen';
 import SignupScreen from './views/auth/SignupScreen';
 import HomeScreen from './views/HomeScreen';
 import MainScreen from './views/MainScreen';
+import ProfileScreen from './views/ProfileScreen';
 import DistributorScreen from './views/DistributorScreen';
 import DonateScreen from './views/DonateScreen';
 
@@ -25,6 +26,7 @@ const MainNavigator = createStackNavigator({
     Login: {screen: LoginScreen},
     Signup: {screen: SignupScreen},
     Main: {screen: MainScreen},
+    Profile: {screen: ProfileScreen},
     Distributors: {screen: DistributorScreen},
     Donate: {screen: DonateScreen},
 });

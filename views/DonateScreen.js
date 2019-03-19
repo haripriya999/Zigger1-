@@ -1,5 +1,5 @@
 import React from 'react';
-import {Alert, Platform, StyleSheet, Text, View, Image, TextInput, Button} from 'react-native';
+import {Alert, Platform, StyleSheet, Text, View, Image, TextInput, Button, ToastAndroid} from 'react-native';
 import Bananas from './utils/Bananas';
 import ErrorMessage from './utils/ErrorMessage';
 import firebase from 'firebase';
@@ -37,10 +37,10 @@ export default class DonateScreen extends React.Component {
         distLng: cdistributor.longitude,
         distPhoneno: cdistributor.phoneno,
       })
-      .then(() => this.setState({disabled: false}))
-      .catch(error => { this.setState({disabled: false}); this.setState({errorMessage: error.message}); });
+      .then(() => { ToastAndroid.show(this.state.units+' units donated!', ToastAndroid.SHORT); this.setState({disabled: false})} )
+      .catch(error => { this.setState({disabled: false, errorMessage: error.message}); });
     })
-    .catch(error => { this.setState({disabled: false}); this.setState({errorMessage: error.message}); });
+    .catch(error => { this.setState({disabled: false, errorMessage: error.message}); });
   }
 
   render() {
