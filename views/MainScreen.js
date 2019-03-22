@@ -33,7 +33,9 @@ export default class HomeScreen extends React.Component {
     return (
       <View style={styles.container}>
 
-        <Text>{cuser[Object.keys(cuser)[0]].username}</Text>
+        <Text><Text style={styles.field}>Email:</Text> {cuser[Object.keys(cuser)[0]].email}</Text>
+        <Text><Text style={styles.field}>Username:</Text> {cuser[Object.keys(cuser)[0]].username}</Text>
+        <Text><Text style={styles.field}>Phone No.:</Text> {cuser[Object.keys(cuser)[0]].phoneno}</Text>
 
         <View style={styles.btnContainer}>
           <Button
@@ -48,8 +50,6 @@ export default class HomeScreen extends React.Component {
             onPress={() => navigate('Donate', {user: cuser})}
           />
         </View>
-
-        <Bananas></Bananas>
         
       </View>
     );
@@ -64,6 +64,10 @@ const styles = StyleSheet.create({
     flexDirection: 'column',
     justifyContent: 'center',
     backgroundColor: '#F5FCFF',
+  },
+  field: {
+    fontSize:20, 
+    color: '#841584',
   },
   btnContainer: {
     margin: 20, 
