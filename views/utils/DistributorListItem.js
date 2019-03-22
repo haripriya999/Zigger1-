@@ -78,7 +78,8 @@ const styles = StyleSheet.create({
     margin: 10,
     padding: 10,
     backgroundColor: '#FFFFFF',
-    borderWidth: 1,
+    borderRadius:20,
+    borderWidth: 3,
     borderBottomWidth: 3,
   },
   btnContainer: {
