@@ -14,6 +14,13 @@ export default class DistributorScreen extends React.Component {
     this.fetchData();
   }
 
+  static navigationOptions = () => ({
+    headerTintColor: 'white',
+    headerStyle: {
+      backgroundColor: 'black'
+    },
+  });
+  
   fetchData() {
     this.distributors = [];
     return (firebase.database().ref('distributors').once('value')

@@ -13,6 +13,13 @@ export default class DonateScreen extends React.Component {
     this.state = {units: 0, lat: 0, lng: 0, errorMessage: '', disabled: false};
   }
 
+  static navigationOptions = () => ({
+    headerTintColor: 'white',
+    headerStyle: {
+      backgroundColor: 'black'
+    },
+  });
+  
   componentDidMount = () => {
     navigator.geolocation.getCurrentPosition(
      position => {
