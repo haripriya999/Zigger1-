@@ -73,6 +73,7 @@ export default class DonateScreen extends React.Component {
           <View style={styles.btnContainer}>
             <Button
               title="Donate"
+              color='#111EC6'
               disabled={this.state.disabled}
               onPress={() => this.donate()}
             />

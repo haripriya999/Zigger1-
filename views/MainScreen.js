@@ -29,6 +29,7 @@ export default class HomeScreen extends React.Component {
           <View style={styles.btnContainer}>
             <Button
               title="View nearby Distributors"
+              color='#111EC6'
               onPress={() => navigate('Distributors', {user: cuser})}
             />
           </View>
@@ -36,6 +37,7 @@ export default class HomeScreen extends React.Component {
           <View style={styles.btnContainer}>
             <Button
               title="Donate"
+              color='#111EC6'
               onPress={() => navigate('Donate', {user: cuser})}
             />
           </View>

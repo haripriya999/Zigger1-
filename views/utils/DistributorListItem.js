@@ -58,11 +58,11 @@ export default class DistributorListItem extends React.Component {
         
         <View style={styles.cardRightContainer}>
           <View style={styles.cardBtnContainer}>
-              <Button title="View Map" onPress={() => this.openMap(this.props.latitude, this.props.longitude)}></Button>
+              <Button title="View Map" color='#111EC6' onPress={() => this.openMap(this.props.latitude, this.props.longitude)}></Button>
           </View>
 
           <View style={styles.cardBtnContainer}>
-              <Button title="Claim Unit" onPress={() => this.claimUnit()}></Button>
+              <Button title="Claim Unit" color='#111EC6' onPress={() => this.claimUnit()}></Button>
           </View>
         </View>
       </View>
