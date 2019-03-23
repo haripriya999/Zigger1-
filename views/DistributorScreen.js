@@ -46,7 +46,8 @@ export default class DistributorScreen extends React.Component {
     return (
       <LinearGradient
       colors={['#00FFFF', '#17C8FF', '#329BFF', '#4C64FF', '#6536FF', '#8000FF']}
-      start={{x: 0.0, y: 1.0}} end={{x: 1.0, y: 0.0}}>
+      start={{x: 0.0, y: 1.0}} end={{x: 1.0, y: 0.0}}
+      style={{flex: 1}}>
 
         <ScrollView style={styles.container}
           refreshControl={
