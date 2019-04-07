@@ -10,12 +10,12 @@ import firebase from 'firebase';
 console.disableYellowBox = true;
 
 var config = {
-    apiKey: "AIzaSyBUq-Ljxz1dATPVN9hsQ04FPQIsbkKE20k",
-    authDomain: "zigger-fab73.firebaseapp.com",
-    databaseURL: "https://zigger-fab73.firebaseio.com",
-    projectId: "zigger-fab73",
-    storageBucket: "zigger-fab73.appspot.com",
-    messagingSenderId: "956151236817"
+    apiKey: "xxx",
+    authDomain: "xxx",
+    databaseURL: "xxx",
+    projectId: "xxx",
+    storageBucket: "xxx",
+    messagingSenderId: "xxx"
 };
 
 firebase.initializeApp(config);
